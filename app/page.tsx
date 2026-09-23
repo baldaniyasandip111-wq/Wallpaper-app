@@ -101,7 +101,7 @@ return <main><div className="wrap">
 <div><b>{w.title}</b><small>{w.cat}</small></div>
 <div className="actions">
 <button className="icon" aria-label="Favorite" onClick={()=>toggleFav(w.id)}><Heart size={18} fill={f.includes(w.id)?"currentColor":"none"}/></button>
-<a className="icon" aria-label="Download" href={w.url+"&dl=1"} target="_blank" rel="noreferrer"><Download size={18}/></a>
+<a className="icon" aria-label="Download" href={"/api/download?id="+w.id}><Download size={18}/></a>
 <button className="icon" aria-label="Open" onClick={()=>setSelected(w)}><Maximize2 size={18}/></button>
 </div>
 </div>
@@ -121,7 +121,7 @@ return <main><div className="wrap">
 <div className="actions">
 <button className="icon" onClick={()=>toggleFav(selected.id)}><Heart size={20} fill={f.includes(selected.id)?"currentColor":"none"}/></button>
 <button className="icon" onClick={()=>share(selected)}><Share2 size={20}/></button>
-<a className="downloadBtn" href={selected.url+"&dl=1"} target="_blank" rel="noreferrer"><Download size={20}/> Download</a>
+<a className="downloadBtn" href={"/api/download?id="+selected.id}><Download size={20}/> Download</a>
 </div>
 </div>
 </div>}
