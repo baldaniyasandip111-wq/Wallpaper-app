@@ -1,6 +1,6 @@
 "use client";
 import {useEffect,useMemo,useState} from "react";
-import {Heart,Download,Search,Maximize2,X,Share2,Plus,ArrowUp} from "lucide-react";
+import {Heart,Download,Search,Maximize2,X,Share2,Plus,ArrowUp,Smartphone} from "lucide-react";
 
 const wallpapers=[
 {id:1,title:"Mountain Night",cat:"Nature",url:"https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=90"},
@@ -35,6 +35,7 @@ const[q,setQ]=useState("");
 const[f,setF]=useState<number[]>([]);
 const[selected,setSelected]=useState<(typeof wallpapers)[number]|null>(null);
 const[installEvent,setInstallEvent]=useState<any>(null);
+const[showGuide,setShowGuide]=useState(false);
 
 useEffect(()=>{
 try{setF(JSON.parse(localStorage.getItem("wallpaper-favorites")||"[]"))}catch{}
@@ -57,6 +58,8 @@ const share=async(w:typeof wallpapers[number])=>{
 try{if(navigator.share)await navigator.share({title:w.title,url:w.url});else await navigator.clipboard.writeText(w.url)}catch{}
 };
 
+const openWallpaper=(w:typeof wallpapers[number])=>{setSelected(w);setShowGuide(false)};
+const closeWallpaper=()=>{setSelected(null);setShowGuide(false)};
 const showAll=()=>{setC("All");window.scrollTo({top:0,behavior:"smooth"})};
 
 return <main><div className="wrap">
@@ -96,13 +99,13 @@ return <main><div className="wrap">
 :
 <section className="grid">
 {list.map(w=><article className="card" key={w.id}>
-<button className="thumb" aria-label={"Open "+w.title} onClick={()=>setSelected(w)} style={{backgroundImage:"url('"+w.url+"')"}}/>
+<button className="thumb" aria-label={"Open "+w.title} onClick={()=>openWallpaper(w)} style={{backgroundImage:"url('"+w.url+"')"}}/>
 <div className="info">
 <div><b>{w.title}</b><small>{w.cat}</small></div>
 <div className="actions">
 <button className="icon" aria-label="Favorite" onClick={()=>toggleFav(w.id)}><Heart size={18} fill={f.includes(w.id)?"currentColor":"none"}/></button>
 <a className="icon" aria-label="Download" href={"/api/download?id="+w.id}><Download size={18}/></a>
-<button className="icon" aria-label="Open" onClick={()=>setSelected(w)}><Maximize2 size={18}/></button>
+<button className="icon" aria-label="Open" onClick={()=>openWallpaper(w)}><Maximize2 size={18}/></button>
 </div>
 </div>
 </article>)}
@@ -114,16 +117,27 @@ return <main><div className="wrap">
 <button className="topBtn" aria-label="Back to top" onClick={()=>window.scrollTo({top:0,behavior:"smooth"})}><ArrowUp size={19}/></button>
 
 {selected&&<div className="modal" role="dialog" aria-modal="true">
-<button className="close" onClick={()=>setSelected(null)}><X size={24}/></button>
+<button className="close" onClick={closeWallpaper}><X size={24}/></button>
 <div className="modalImage" style={{backgroundImage:"url('"+selected.url+"')"}}/>
 <div className="modalBar">
 <div><h2>{selected.title}</h2><span>{selected.cat}</span></div>
 <div className="actions">
 <button className="icon" onClick={()=>toggleFav(selected.id)}><Heart size={20} fill={f.includes(selected.id)?"currentColor":"none"}/></button>
 <button className="icon" onClick={()=>share(selected)}><Share2 size={20}/></button>
+<button className="setBtn" onClick={()=>setShowGuide(v=>!v)}><Smartphone size={19}/> Set Wallpaper</button>
 <a className="downloadBtn" href={"/api/download?id="+selected.id}><Download size={20}/> Download</a>
 </div>
 </div>
+{showGuide&&<div className="wallGuide">
+<div className="guideHead"><h3>How to set wallpaper</h3><button className="guideClose" onClick={()=>setShowGuide(false)} aria-label="Close guide"><X size={18}/></button></div>
+<ol>
+<li>Tap <b>Download</b> above.</li>
+<li>Open the downloaded photo in <b>Google Photos</b> or your Gallery.</li>
+<li>Tap <b>⋮ → Use as → Wallpaper</b>.</li>
+<li>Choose <b>Home screen</b>, <b>Lock screen</b>, or both, then apply.</li>
+</ol>
 </div>}
+</div>}
+
 </main>
 }
