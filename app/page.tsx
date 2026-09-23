@@ -12,7 +12,7 @@ export default function Home(){
 const[c,setC]=useState("All");const[q,setQ]=useState("");const[f,setF]=useState<number[]>([]);const[selected,setSelected]=useState<(typeof wallpapers)[number]|null>(null);const[installEvent,setInstallEvent]=useState<any>(null);
 useEffect(()=>{try{setF(JSON.parse(localStorage.getItem("wallpaper-favorites")||"[]"))}catch{};const handler=(e:any)=>{e.preventDefault();setInstallEvent(e)};window.addEventListener("beforeinstallprompt",handler);if("serviceWorker"in navigator)navigator.serviceWorker.register("/sw.js").catch(()=>{});return()=>window.removeEventListener("beforeinstallprompt",handler)},[]);
 useEffect(()=>{localStorage.setItem("wallpaper-favorites",JSON.stringify(f))},[f]);
-const list=useMemo(()=>wallpapers.filter(w=>(c==="All"||w.cat===c)&&w.title.toLowerCase().includes(q.toLowerCase())),[c,q]);
+const list=useMemo(()=>wallpapers.filter(w=>(c==="All"||c==="Favorites"&&f.includes(w.id)||c===w.cat)&&w.title.toLowerCase().includes(q.toLowerCase())),[c,q,f]);
 const toggleFav=(id:number)=>setF(v=>v.includes(id)?v.filter(x=>x!==id):[...v,id]);
 const share=async(w:typeof wallpapers[number])=>{try{if(navigator.share)await navigator.share({title:w.title,url:w.url});else await navigator.clipboard.writeText(w.url)}catch{}};
 return <main><div className="wrap">
