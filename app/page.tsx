@@ -152,7 +152,6 @@ return <main><div className="wrap">
 <h3>Phone Preview</h3><p>See how this wallpaper looks on a phone screen.</p>
 </div>
 </div>}
-</div>}
 
 </main>
 }
