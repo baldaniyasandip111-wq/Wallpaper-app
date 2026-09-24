@@ -41,6 +41,7 @@ const[toast,setToast]=useState("");
 const[recent,setRecent]=useState<number[]>([]);
 const[live,setLive]=useState<string|null>(null);
 const[livePaused,setLivePaused]=useState(false);
+const[liveBatterySaver,setLiveBatterySaver]=useState(false);
 
 useEffect(()=>{
 try{setF(JSON.parse(localStorage.getItem("wallpaper-favorites")||"[]"));setRecent(JSON.parse(localStorage.getItem("wallpaper-recent")||"[]"))}catch{}
