@@ -32,7 +32,15 @@ const images:Record<string,{title:string,url:string}>={
 "29":{title:"Alpine Lake",url:"https://images.unsplash.com/photo-1439853949127-fa647821eba0?auto=format&fit=crop&w=1200&q=90"},
 "30":{title:"Rainy Downtown",url:"https://images.unsplash.com/photo-1514565131-fce0801e5785?auto=format&fit=crop&w=1200&q=90"},
 "31":{title:"Violet Energy",url:"https://images.unsplash.com/photo-1557682224-5b8590cd9ec5?auto=format&fit=crop&w=1200&q=90"},
-"32":{title:"Quiet Concrete",url:"https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&w=1200&q=90"}
+"32":{title:"Quiet Concrete",url:"https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&w=1200&q=90"},
+"33":{title:"Misty Peaks",url:"https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=90"},
+"34":{title:"City Rain",url:"https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=1200&q=90"},
+"35":{title:"Cosmic Violet",url:"https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1200&q=90"},
+"36":{title:"Soft Geometry",url:"https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1200&q=90"},
+"37":{title:"Forest Light",url:"https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1200&q=90"},
+"38":{title:"Midnight Tower",url:"https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?auto=format&fit=crop&w=1200&q=90"},
+"39":{title:"Blue Horizon",url:"https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1200&q=90"},
+"40":{title:"Quiet Space",url:"https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=90"}
 };
 
 export async function GET(request:NextRequest){
