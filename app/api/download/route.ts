@@ -28,7 +28,7 @@ const images:Record<string,{title:string,url:string}>={
 "25":{title:"Desert Dunes",url:"https://images.unsplash.com/photo-1516563670759-299070f0dc54?auto=format&fit=crop&w=1200&q=90"},
 "26":{title:"Tokyo Glow",url:"https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=1200&q=90"},
 "27":{title:"Electric Blue",url:"https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&fit=crop&w=1200&q=90"},
-"28":{title:"Warm Minimal",url:"https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1200&q=90"},
+"28":{title:"Warm Minimal",url:"https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=90"},
 "29":{title:"Alpine Lake",url:"https://images.unsplash.com/photo-1439853949127-fa647821eba0?auto=format&fit=crop&w=1200&q=90"},
 "30":{title:"Rainy Downtown",url:"https://images.unsplash.com/photo-1514565131-fce0801e5785?auto=format&fit=crop&w=1200&q=90"},
 "31":{title:"Violet Energy",url:"https://images.unsplash.com/photo-1557682224-5b8590cd9ec5?auto=format&fit=crop&w=1200&q=90"},
