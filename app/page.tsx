@@ -35,7 +35,8 @@ const[q,setQ]=useState("");
 const[f,setF]=useState<number[]>([]);
 const[selected,setSelected]=useState<(typeof wallpapers)[number]|null>(null);
 const[installEvent,setInstallEvent]=useState<any>(null);
-const[showGuide,setShowGuide]=useState(false);\nconst[showPhonePreview,setShowPhonePreview]=useState(false);
+const[showGuide,setShowGuide]=useState(false);
+const[showPhonePreview,setShowPhonePreview]=useState(false);
 
 useEffect(()=>{
 try{setF(JSON.parse(localStorage.getItem("wallpaper-favorites")||"[]"))}catch{}
@@ -124,7 +125,8 @@ return <main><div className="wrap">
 <div className="actions">
 <button className="icon" onClick={()=>toggleFav(selected.id)}><Heart size={20} fill={f.includes(selected.id)?"currentColor":"none"}/></button>
 <button className="icon" onClick={()=>share(selected)}><Share2 size={20}/></button>
-<button className="setBtn" onClick={()=>setShowGuide(v=>!v)}><Smartphone size={19}/> Set Wallpaper</button>\n<button className="previewBtn" onClick={()=>setShowPhonePreview(true)}><Smartphone size={19}/> Phone Preview</button>
+<button className="setBtn" onClick={()=>setShowGuide(v=>!v)}><Smartphone size={19}/> Set Wallpaper</button>
+<button className="previewBtn" onClick={()=>setShowPhonePreview(true)}><Smartphone size={19}/> Phone Preview</button>
 <a className="downloadBtn" href={"/api/download?id="+selected.id}><Download size={20}/> Download</a>
 </div>
 </div>
