@@ -140,7 +140,7 @@ return <main><div className="wrap">
 </ol>
 </div>}
 </div>}
-{showPhonePreview&&<div className="phonePreviewOverlay">
+{selected&&showPhonePreview&&<div className="phonePreviewOverlay">
 <div className="phonePreviewCard">
 <button className="previewClose" onClick={()=>setShowPhonePreview(false)} aria-label="Close phone preview"><X size={20}/></button>
 <div className="phoneFrame">
