@@ -1,6 +1,6 @@
 "use client";
 import {useEffect,useMemo,useState} from "react";
-import {Heart,Download,Search,Maximize2,X,Share2,Plus,ArrowUp,Smartphone} from "lucide-react";
+import {Heart,Download,Search,Maximize2,X,Share2,Plus,ArrowUp,Smartphone,Shuffle} from "lucide-react";
 
 const wallpapers=[
 {id:1,title:"Mountain Night",cat:"Nature",url:"https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=90"},
@@ -48,112 +48,28 @@ return()=>window.removeEventListener("beforeinstallprompt",handler)
 
 useEffect(()=>{localStorage.setItem("wallpaper-favorites",JSON.stringify(f))},[f]);
 
-const list=useMemo(()=>wallpapers.filter(w=>
-(c==="All"||(c==="Favorites"&&f.includes(w.id))||c===w.cat)&&
-w.title.toLowerCase().includes(q.toLowerCase())
-),[c,q,f]);
-
+const list=useMemo(()=>wallpapers.filter(w=>(c==="All"||(c==="Favorites"&&f.includes(w.id))||c===w.cat)&&w.title.toLowerCase().includes(q.toLowerCase())),[c,q,f]);
 const toggleFav=(id:number)=>setF(v=>v.includes(id)?v.filter(x=>x!==id):[...v,id]);
-
-const share=async(w:typeof wallpapers[number])=>{
-try{if(navigator.share)await navigator.share({title:w.title,url:w.url});else await navigator.clipboard.writeText(w.url)}catch{}
-};
-
+const share=async(w:typeof wallpapers[number])=>{try{if(navigator.share)await navigator.share({title:w.title,url:w.url});else await navigator.clipboard.writeText(w.url)}catch{}};
 const openWallpaper=(w:typeof wallpapers[number])=>{setSelected(w);setShowGuide(false);setShowPhonePreview(false)};
 const closeWallpaper=()=>{setSelected(null);setShowGuide(false);setShowPhonePreview(false)};
 const showAll=()=>{setC("All");window.scrollTo({top:0,behavior:"smooth"})};
+const surpriseMe=()=>{const pool=list.length?list:wallpapers;openWallpaper(pool[Math.floor(Math.random()*pool.length)])};
 
 return <main><div className="wrap">
 <nav className="nav">
 <div className="brand">Wallpaper<span>.app</span></div>
-<div className="navlinks">
-<button onClick={showAll}>Popular</button>
-<button onClick={()=>document.querySelector(".cats")?.scrollIntoView({behavior:"smooth"})}>Categories</button>
-<button onClick={()=>{setC("Favorites");window.scrollTo({top:0,behavior:"smooth"})}}>Favorites ♥ {f.length}</button>
-</div>
+<div className="navlinks"><button onClick={showAll}>Popular</button><button onClick={()=>document.querySelector(".cats")?.scrollIntoView({behavior:"smooth"})}>Categories</button><button onClick={()=>{setC("Favorites");window.scrollTo({top:0,behavior:"smooth"})}}>Favorites ♥ {f.length}</button></div>
 {installEvent&&<button className="installBtn" onClick={async()=>{await installEvent.prompt();setInstallEvent(null)}}><Plus size={17}/> Install App</button>}
 </nav>
-
-<section className="hero">
-<h1>Find your next wallpaper.</h1>
-<p>24 beautiful wallpapers made for your phone.</p>
-<div className="search">
-<Search size={22}/>
-<input value={q} onChange={e=>setQ(e.target.value)} placeholder="Search wallpapers..." aria-label="Search wallpapers"/>
-<button onClick={()=>document.querySelector(".grid")?.scrollIntoView({behavior:"smooth"})}>Search</button>
-</div>
-</section>
-
-<div className="cats">
-{["All","Nature","City","Abstract","Minimal","Favorites"].map(x=>{
-const count=x==="All"?wallpapers.length:x==="Favorites"?f.length:wallpapers.filter(w=>w.cat===x).length;
-return <button key={x} onClick={()=>setC(x)} className={"cat "+(c===x?"active":"")}>{x}<span className="catCount">{count}</span></button>
-})}
-</div>
-
-<div className="sectionHead">
-<div><h2>{c==="Favorites"?"Your Favorites":c==="All"?"Latest Wallpapers":c}</h2><span>{list.length} wallpaper{list.length===1?"":"s"}</span></div>
-{c!=="All"&&<button className="clearBtn" onClick={()=>setC("All")}>Show all</button>}
-</div>
-
-{list.length===0?
-<div className="empty"><Heart size={34}/><h3>No favorites yet</h3><p>Tap the heart on any wallpaper to save it here.</p><button className="emptyBtn" onClick={()=>setC("All")}>Explore wallpapers</button></div>
-:
-<section className="grid">
-{list.map(w=><article className="card" key={w.id}>
-<button className="thumb" aria-label={"Open "+w.title} onClick={()=>openWallpaper(w)} style={{backgroundImage:"url('"+w.url+"')"}}/>
-<div className="info">
-<div><b>{w.title}</b><small>{w.cat}</small></div>
-<div className="actions">
-<button className="icon" aria-label="Favorite" onClick={()=>toggleFav(w.id)}><Heart size={18} fill={f.includes(w.id)?"currentColor":"none"}/></button>
-<a className="icon" aria-label="Download" href={"/api/download?id="+w.id}><Download size={18}/></a>
-<button className="icon" aria-label="Open" onClick={()=>openWallpaper(w)}><Maximize2 size={18}/></button>
-</div>
-</div>
-</article>)}
-</section>}
-
+<section className="hero"><h1>Find your next wallpaper.</h1><p>24 beautiful wallpapers made for your phone.</p><div className="search"><Search size={22}/><input value={q} onChange={e=>setQ(e.target.value)} placeholder="Search wallpapers..." aria-label="Search wallpapers"/><button onClick={()=>document.querySelector(".grid")?.scrollIntoView({behavior:"smooth"})}>Search</button></div></section>
+<div className="cats">{["All","Nature","City","Abstract","Minimal","Favorites"].map(x=>{const count=x==="All"?wallpapers.length:x==="Favorites"?f.length:wallpapers.filter(w=>w.cat===x).length;return <button key={x} onClick={()=>setC(x)} className={"cat "+(c===x?"active":"")}>{x}<span className="catCount">{count}</span></button>})}</div>
+<div className="sectionHead"><div><h2>{c==="Favorites"?"Your Favorites":c==="All"?"Latest Wallpapers":c}</h2><span>{list.length} wallpaper{list.length===1?"":"s"}</span></div><div className="sectionActions">{c!=="All"&&<button className="clearBtn" onClick={()=>setC("All")}>Show all</button>}<button className="randomBtn" onClick={surpriseMe}><Shuffle size={16}/> Surprise me</button></div></div>
+{list.length===0?<div className="empty"><Heart size={34}/><h3>No favorites yet</h3><p>Tap the heart on any wallpaper to save it here.</p><button className="emptyBtn" onClick={()=>setC("All")}>Explore wallpapers</button></div>:<section className="grid">{list.map(w=><article className="card" key={w.id}><button className="thumb" aria-label={"Open "+w.title} onClick={()=>openWallpaper(w)} style={{backgroundImage:"url('"+w.url+"')"}}/><div className="info"><div><b>{w.title}</b><small>{w.cat}</small></div><div className="actions"><button className="icon" aria-label="Favorite" onClick={()=>toggleFav(w.id)}><Heart size={18} fill={f.includes(w.id)?"currentColor":"none"}/></button><a className="icon" aria-label="Download" href={"/api/download?id="+w.id}><Download size={18}/></a><button className="icon" aria-label="Open" onClick={()=>openWallpaper(w)}><Maximize2 size={18}/></button></div></div></article>)}</section>}
 <footer className="footer">© 2026 Wallpaper.app · 24 wallpapers · Made for mobile</footer>
 </div>
-
 <button className="topBtn" aria-label="Back to top" onClick={()=>window.scrollTo({top:0,behavior:"smooth"})}><ArrowUp size={19}/></button>
-
-{selected&&<div className="modal" role="dialog" aria-modal="true">
-<button className="close" onClick={closeWallpaper}><X size={24}/></button>
-<div className="modalImage" style={{backgroundImage:"url('"+selected.url+"')"}}/>
-<div className="modalBar">
-<div><h2>{selected.title}</h2><span>{selected.cat}</span></div>
-<div className="actions">
-<button className="icon" onClick={()=>toggleFav(selected.id)}><Heart size={20} fill={f.includes(selected.id)?"currentColor":"none"}/></button>
-<button className="icon" onClick={()=>share(selected)}><Share2 size={20}/></button>
-<button className="setBtn" onClick={()=>setShowGuide(v=>!v)}><Smartphone size={19}/> Set Wallpaper</button>
-<button className="previewBtn" onClick={()=>setShowPhonePreview(true)}><Smartphone size={19}/> Phone Preview</button>
-<a className="downloadBtn" href={"/api/download?id="+selected.id}><Download size={20}/> Download</a>
-</div>
-</div>
-{showGuide&&<div className="wallGuide">
-<div className="guideHead"><h3>How to set wallpaper</h3><button className="guideClose" onClick={()=>setShowGuide(false)} aria-label="Close guide"><X size={18}/></button></div>
-<ol>
-<li>Tap <b>Download</b> above.</li>
-<li>Open the downloaded photo in <b>Google Photos</b> or your Gallery.</li>
-<li>Tap <b>⋮ → Use as → Wallpaper</b>.</li>
-<li>Choose <b>Home screen</b>, <b>Lock screen</b>, or both, then apply.</li>
-</ol>
-</div>}
-</div>}
-
-{selected&&showPhonePreview&&<div className="phonePreviewOverlay">
-<div className="phonePreviewCard">
-<button className="previewClose" onClick={()=>setShowPhonePreview(false)} aria-label="Close phone preview"><X size={20}/></button>
-<div className="phoneFrame">
-<div className="phoneScreen" style={{backgroundImage:"url('"+selected.url+"')"}}>
-<div className="phoneTop"><span>9:41</span><span>● ◼︎ ▰</span></div>
-<div className="phoneBottom"><span>◉</span><span>⌂</span><span>▣</span></div>
-</div>
-</div>
-<h3>Phone Preview</h3><p>See how this wallpaper looks on a phone screen.</p>
-</div>
-</div>}
-
+{selected&&<div className="modal" role="dialog" aria-modal="true"><button className="close" onClick={closeWallpaper}><X size={24}/></button><div className="modalImage" style={{backgroundImage:"url('"+selected.url+"')"}}/><div className="modalBar"><div><h2>{selected.title}</h2><span>{selected.cat}</span></div><div className="actions"><button className="icon" onClick={()=>toggleFav(selected.id)}><Heart size={20} fill={f.includes(selected.id)?"currentColor":"none"}/></button><button className="icon" onClick={()=>share(selected)}><Share2 size={20}/></button><button className="setBtn" onClick={()=>setShowGuide(v=>!v)}><Smartphone size={19}/> Set Wallpaper</button><button className="previewBtn" onClick={()=>setShowPhonePreview(true)}><Smartphone size={19}/> Phone Preview</button><a className="downloadBtn" href={"/api/download?id="+selected.id}><Download size={20}/> Download</a></div></div>{showGuide&&<div className="wallGuide"><div className="guideHead"><h3>How to set wallpaper</h3><button className="guideClose" onClick={()=>setShowGuide(false)} aria-label="Close guide"><X size={18}/></button></div><ol><li>Tap <b>Download</b> above.</li><li>Open the downloaded photo in <b>Google Photos</b> or your Gallery.</li><li>Tap <b>⋮ → Use as → Wallpaper</b>.</li><li>Choose <b>Home screen</b>, <b>Lock screen</b>, or both, then apply.</li></ol></div>}</div>}
+{selected&&showPhonePreview&&<div className="phonePreviewOverlay"><div className="phonePreviewCard"><button className="previewClose" onClick={()=>setShowPhonePreview(false)} aria-label="Close phone preview"><X size={20}/></button><div className="phoneFrame"><div className="phoneScreen" style={{backgroundImage:"url('"+selected.url+"')"}}><div className="phoneTop"><span>9:41</span><span>● ◼︎ ▰</span></div><div className="phoneBottom"><span>◉</span><span>⌂</span><span>▣</span></div></div></div><h3>Phone Preview</h3><p>See how this wallpaper looks on a phone screen.</p></div></div>}
 </main>
 }
