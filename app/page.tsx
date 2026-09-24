@@ -151,5 +151,6 @@ return <main><div className="wrap">
 </div>
 <h3>Phone Preview</h3><p>See how this wallpaper looks on a phone screen.</p>
 </div>
+</div>
 </main>
 }
