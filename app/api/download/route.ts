@@ -33,14 +33,14 @@ const images:Record<string,{title:string,url:string}>={
 "30":{title:"Rainy Downtown",url:"https://images.unsplash.com/photo-1514565131-fce0801e5785?auto=format&fit=crop&w=1200&q=90"},
 "31":{title:"Violet Energy",url:"https://images.unsplash.com/photo-1557682224-5b8590cd9ec5?auto=format&fit=crop&w=1200&q=90"},
 "32":{title:"Quiet Concrete",url:"https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&w=1200&q=90"},
-"33":{title:"Misty Peaks",url:"https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=90"},
-"34":{title:"City Rain",url:"https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=1200&q=90"},
-"35":{title:"Cosmic Violet",url:"https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1200&q=90"},
-"36":{title:"Soft Geometry",url:"https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=1200&q=90"},
-"37":{title:"Forest Light",url:"https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1200&q=90"},
-"38":{title:"Midnight Tower",url:"https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?auto=format&fit=crop&w=1200&q=90"},
-"39":{title:"Blue Horizon",url:"https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1200&q=90"},
-"40":{title:"Quiet Space",url:"https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=90"}
+"33":{title:"Misty Peaks",url:"https://images.unsplash.com/photo-1439565983992-3ee6dd957b9c?auto=format&fit=crop&w=1200&q=90"},
+"34":{title:"City Rain",url:"https://images.unsplash.com/photo-1779911813018-c650877e6d43?auto=format&fit=crop&w=1200&q=90"},
+"35":{title:"Cosmic Violet",url:"https://images.unsplash.com/photo-1751336112082-66c6f90b823b?auto=format&fit=crop&w=1200&q=90"},
+"36":{title:"Soft Geometry",url:"https://images.unsplash.com/photo-1741869218100-42951c3b0568?auto=format&fit=crop&w=1200&q=90"},
+"37":{title:"Forest Light",url:"https://images.unsplash.com/photo-1756141259862-ce6caf4777df?auto=format&fit=crop&w=1200&q=90"},
+"38":{title:"Midnight Tower",url:"https://images.unsplash.com/photo-1768006238396-c013c5db2169?auto=format&fit=crop&w=1200&q=90"},
+"39":{title:"Blue Horizon",url:"https://images.unsplash.com/photo-1744024400478-4cae0bcb4663?auto=format&fit=crop&w=1200&q=90"},
+"40":{title:"Quiet Space",url:"https://images.unsplash.com/photo-1745745722251-637138cedc8d?auto=format&fit=crop&w=1200&q=90"}
 };
 
 export async function GET(request:NextRequest){
