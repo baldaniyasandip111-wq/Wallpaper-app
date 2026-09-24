@@ -9,3 +9,8 @@
 .liveControls{margin:10px 0 6px}.liveControls button{font-weight:700;min-width:105px}
 .liveStage p{margin:8px auto 2px}
 @media(max-width:520px){.liveModal{padding:7px}.liveStage{width:100%;padding:7px;border-radius:24px}.liveBig{height:72vh;min-height:0;border-radius:20px}.liveBig b{font-size:22px}}
+
+.liveControls .batteryOn{border-color:#4ade80;background:#102317;color:#b7f7c9}
+.batterySaver:before,.batterySaver:after,.batterySaver i{animation-duration:18s!important}
+.batterySaver:after{opacity:.48}
+.nativeHint{font-size:11px!important;color:#6f788b!important}
