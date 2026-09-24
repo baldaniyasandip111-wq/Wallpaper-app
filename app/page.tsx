@@ -36,7 +36,6 @@ const[f,setF]=useState<number[]>([]);
 const[selected,setSelected]=useState<(typeof wallpapers)[number]|null>(null);
 const[installEvent,setInstallEvent]=useState<any>(null);
 const[showGuide,setShowGuide]=useState(false);\nconst[showPhonePreview,setShowPhonePreview]=useState(false);
-const[showPhonePreview,setShowPhonePreview]=useState(false);
 
 useEffect(()=>{
 try{setF(JSON.parse(localStorage.getItem("wallpaper-favorites")||"[]"))}catch{}
@@ -126,7 +125,6 @@ return <main><div className="wrap">
 <button className="icon" onClick={()=>toggleFav(selected.id)}><Heart size={20} fill={f.includes(selected.id)?"currentColor":"none"}/></button>
 <button className="icon" onClick={()=>share(selected)}><Share2 size={20}/></button>
 <button className="setBtn" onClick={()=>setShowGuide(v=>!v)}><Smartphone size={19}/> Set Wallpaper</button>\n<button className="previewBtn" onClick={()=>setShowPhonePreview(true)}><Smartphone size={19}/> Phone Preview</button>
-<button className="previewBtn" onClick={()=>setShowPhonePreview(true)}><Smartphone size={19}/> Phone Preview</button>
 <a className="downloadBtn" href={"/api/download?id="+selected.id}><Download size={20}/> Download</a>
 </div>
 </div>
@@ -140,18 +138,7 @@ return <main><div className="wrap">
 </ol>
 </div>}
 </div>}
-{selected&&showPhonePreview&&<div className="phonePreviewOverlay">
-<div className="phonePreviewCard">
-<button className="previewClose" onClick={()=>setShowPhonePreview(false)} aria-label="Close phone preview"><X size={20}/></button>
-<div className="phoneFrame">
-<div className="phoneScreen" style={{backgroundImage:"url('"+selected.url+"')"}}>
-<div className="phoneTop"><span>9:41</span><span>● ◼︎ ▰</span></div>
-<div className="phoneBottom"><span>◉</span><span>⌂</span><span>▣</span></div>
-</div>
-</div>
-<h3>Phone Preview</h3><p>See how this wallpaper looks on a phone screen.</p>
-</div>
-</div>
+
 {selected&&showPhonePreview&&<div className="phonePreviewOverlay">
 <div className="phonePreviewCard">
 <button className="previewClose" onClick={()=>setShowPhonePreview(false)} aria-label="Close phone preview"><X size={20}/></button>
