@@ -37,6 +37,7 @@ const[selected,setSelected]=useState<(typeof wallpapers)[number]|null>(null);
 const[installEvent,setInstallEvent]=useState<any>(null);
 const[showGuide,setShowGuide]=useState(false);
 const[showPhonePreview,setShowPhonePreview]=useState(false);
+const[toast,setToast]=useState("");
 
 useEffect(()=>{
 try{setF(JSON.parse(localStorage.getItem("wallpaper-favorites")||"[]"))}catch{}
@@ -49,8 +50,9 @@ return()=>window.removeEventListener("beforeinstallprompt",handler)
 useEffect(()=>{localStorage.setItem("wallpaper-favorites",JSON.stringify(f))},[f]);
 
 const list=useMemo(()=>wallpapers.filter(w=>(c==="All"||(c==="Favorites"&&f.includes(w.id))||c===w.cat)&&w.title.toLowerCase().includes(q.toLowerCase())),[c,q,f]);
-const toggleFav=(id:number)=>setF(v=>v.includes(id)?v.filter(x=>x!==id):[...v,id]);
-const share=async(w:typeof wallpapers[number])=>{try{if(navigator.share)await navigator.share({title:w.title,url:w.url});else await navigator.clipboard.writeText(w.url)}catch{}};
+const notify=(message:string)=>{setToast(message);window.setTimeout(()=>setToast(""),1800)};
+const toggleFav=(id:number)=>{setF(v=>v.includes(id)?v.filter(x=>x!==id):[...v,id]);notify(f.includes(id)?"Removed from favorites":"Saved to favorites")};
+const share=async(w:typeof wallpapers[number])=>{try{if(navigator.share){await navigator.share({title:w.title,url:w.url});notify("Share sheet opened")}else{await navigator.clipboard.writeText(w.url);notify("Wallpaper link copied")}}catch{}};
 const openWallpaper=(w:typeof wallpapers[number])=>{setSelected(w);setShowGuide(false);setShowPhonePreview(false)};
 const closeWallpaper=()=>{setSelected(null);setShowGuide(false);setShowPhonePreview(false)};
 const showAll=()=>{setC("All");window.scrollTo({top:0,behavior:"smooth"})};
@@ -80,5 +82,6 @@ return <main><div className="wrap">
 <button className="topBtn" aria-label="Back to top" onClick={()=>window.scrollTo({top:0,behavior:"smooth"})}><ArrowUp size={19}/></button>
 {selected&&<div className="modal" role="dialog" aria-modal="true" aria-label={selected.title} onMouseDown={e=>{if(e.target===e.currentTarget)closeWallpaper()}}><button className="close" title="Close preview" onClick={closeWallpaper}><X size={24}/></button><div className="modalImage" style={{backgroundImage:"url('"+selected.url+"')"}}/><div className="modalBar"><div><h2>{selected.title}</h2><span>{selected.cat}</span></div><div className="actions"><button className="icon" onClick={()=>toggleFav(selected.id)}><Heart size={20} fill={f.includes(selected.id)?"currentColor":"none"}/></button><button className="icon" onClick={()=>share(selected)}><Share2 size={20}/></button><button className="setBtn" onClick={()=>setShowGuide(v=>!v)}><Smartphone size={19}/> Set Wallpaper</button><button className="previewBtn" onClick={()=>setShowPhonePreview(true)}><Smartphone size={19}/> Phone Preview</button><a className="downloadBtn" href={"/api/download?id="+selected.id} download><Download size={20}/> Download</a></div></div>{showGuide&&<div className="wallGuide"><div className="guideHead"><h3>How to set wallpaper</h3><button className="guideClose" onClick={()=>setShowGuide(false)} aria-label="Close guide"><X size={18}/></button></div><ol><li>Tap <b>Download</b> above.</li><li>Open the downloaded photo in <b>Google Photos</b> or your Gallery.</li><li>Tap <b>⋮ → Use as → Wallpaper</b>.</li><li>Choose <b>Home screen</b>, <b>Lock screen</b>, or both, then apply.</li></ol></div>}</div>}
 {selected&&showPhonePreview&&<div className="phonePreviewOverlay"><div className="phonePreviewCard"><button className="previewClose" onClick={()=>setShowPhonePreview(false)} aria-label="Close phone preview"><X size={20}/></button><div className="phoneFrame"><div className="phoneScreen" style={{backgroundImage:"url('"+selected.url+"')"}}><div className="phoneTop"><span>9:41</span><span>● ◼︎ ▰</span></div><div className="phoneBottom"><span>◉</span><span>⌂</span><span>▣</span></div></div></div><h3>Phone Preview</h3><p>See how this wallpaper looks on a phone screen.</p></div></div>}
+<div className={"toast "+(toast?"show":"")} role="status" aria-live="polite">{toast}</div>
 </main>
 }
