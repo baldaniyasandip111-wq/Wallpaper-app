@@ -24,7 +24,15 @@ const images:Record<string,{title:string,url:string}>={
 "21":{title:"Modern Buildings",url:"https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?auto=format&fit=crop&w=1200&q=90"},
 "22":{title:"Blue Waves",url:"https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1200&q=90"},
 "23":{title:"Calm Architecture",url:"https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=90"},
-"24":{title:"Autumn Trail",url:"https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1200&q=90"}
+"24":{title:"Autumn Trail",url:"https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1200&q=90"},
+"25":{title:"Desert Dunes",url:"https://images.unsplash.com/photo-1516563670759-299070f0dc54?auto=format&fit=crop&w=1200&q=90"},
+"26":{title:"Tokyo Glow",url:"https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=1200&q=90"},
+"27":{title:"Electric Blue",url:"https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&fit=crop&w=1200&q=90"},
+"28":{title:"Warm Minimal",url:"https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1200&q=90"},
+"29":{title:"Alpine Lake",url:"https://images.unsplash.com/photo-1439853949127-fa647821eba0?auto=format&fit=crop&w=1200&q=90"},
+"30":{title:"Rainy Downtown",url:"https://images.unsplash.com/photo-1514565131-fce0801e5785?auto=format&fit=crop&w=1200&q=90"},
+"31":{title:"Violet Energy",url:"https://images.unsplash.com/photo-1557682224-5b8590cd9ec5?auto=format&fit=crop&w=1200&q=90"},
+"32":{title:"Quiet Concrete",url:"https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&w=1200&q=90"}
 };
 
 export async function GET(request:NextRequest){
