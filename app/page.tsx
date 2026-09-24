@@ -85,9 +85,10 @@ return <main><div className="wrap">
 </section>
 
 <div className="cats">
-{["All","Nature","City","Abstract","Minimal","Favorites"].map(x=>
-<button key={x} onClick={()=>setC(x)} className={"cat "+(c===x?"active":"")}>{x}{x==="Favorites"&&f.length>0?" ♥ "+f.length:""}</button>
-)}
+{["All","Nature","City","Abstract","Minimal","Favorites"].map(x=>{
+const count=x==="All"?wallpapers.length:x==="Favorites"?f.length:wallpapers.filter(w=>w.cat===x).length;
+return <button key={x} onClick={()=>setC(x)} className={"cat "+(c===x?"active":"")}>{x}<span className="catCount">{count}</span></button>
+})}
 </div>
 
 <div className="sectionHead">
