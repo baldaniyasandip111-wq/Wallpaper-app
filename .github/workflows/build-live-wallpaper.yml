@@ -33,3 +33,5 @@ jobs:
         with:
           name: wallpaper-app-live-debug
           path: android-live-wallpaper/app/build/outputs/apk/debug/app-debug.apk
+
+# Manual verification trigger checkpoint
