@@ -11,11 +11,11 @@
 - Branch: `main`
 - Vercel project: `wallpaper-app`
 - Production: `https://wallpaper-app-one.vercel.app`
-- Current GitHub HEAD: `7afba0a2e6ea6ccc6e91cd51bd6e09aca5a75df3`
+- Current GitHub HEAD: `27a42cb963a84ee48cccc2a1dec6987bc397c584`
 - Latest verified production deployment:
-  - Deployment: `dpl_AzpX6BKTaXBnLkMWA5kChgxmfWmy`
+  - Deployment: `dpl_76HWtwdYg16wgWDbUQGrHJ6J7jeN`
   - State: **READY**
-  - Commit: `9c34ce360792c44aa4fd7cc43c67108e57de4bf8`
+  - Commit: `27a42cb963a84ee48cccc2a1dec6987bc397c584`
 - Owner prefers simple Gujarati communication and does not want to manually code.
 
 ## 2. Current product status
@@ -257,12 +257,14 @@ Priority order:
 ## 9. Session checkpoint
 
 This handover was created/updated from the verified state at:
-- GitHub HEAD: `7afba0a2e6ea6ccc6e91cd51bd6e09aca5a75df3`
-- Production deployment: `dpl_AzpX6BKTaXBnLkMWA5kChgxmfWmy`
+- Date: 2026-09-26
+- GitHub HEAD: `27a42cb963a84ee48cccc2a1dec6987bc397c584`
+- Production deployment: `dpl_76HWtwdYg16wgWDbUQGrHJ6J7jeN`
 - Production state: **READY**
 - Static catalog: **40 unique wallpapers**
 - Duplicate image URLs: **0**
 - Native Android APK: **NOT YET VERIFIED**
 - Latest native renderer commit: `7afba0a2e6ea6ccc6e91cd51bd6e09aca5a75df3`
-- Native renderer now has Aurora, Nebula, and Ocean scenes with battery-aware frame timing.
-- Immediate next action: **verify Android Actions run/artifact, then test/fix native build if needed.**
+- Latest Android build compatibility fix: `27a42cb963a84ee48cccc2a1dec6987bc397c584`
+- Native renderer has Aurora, Nebula, and Ocean scenes with battery-aware frame timing.
+- Immediate next action: **verify Android Actions run/artifact; if unavailable, continue native build hardening and then verify.**
