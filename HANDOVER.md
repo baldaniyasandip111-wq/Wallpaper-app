@@ -11,11 +11,11 @@
 - Branch: `main`
 - Vercel project: `wallpaper-app`
 - Production: `https://wallpaper-app-one.vercel.app`
-- Current GitHub HEAD: `27a42cb963a84ee48cccc2a1dec6987bc397c584`
+- Current GitHub HEAD: `05e2b8a983344082e86ea939dd50fcdf80d6a79a`
 - Latest verified production deployment:
-  - Deployment: `dpl_76HWtwdYg16wgWDbUQGrHJ6J7jeN`
+  - Deployment: `dpl_a4arY26FspV6DavEYxUGcY4zDGDt`
   - State: **READY**
-  - Commit: `27a42cb963a84ee48cccc2a1dec6987bc397c584`
+  - Commit: `05e2b8a983344082e86ea939dd50fcdf80d6a79a`
 - Owner prefers simple Gujarati communication and does not want to manually code.
 
 ## 2. Current product status
@@ -212,6 +212,9 @@ Before the chat ends, update `HANDOVER.md` with:
 - any newly discovered bugs/constraints
 - duplicate-check result if catalog changed
 
+### 5-day execution rule
+Because the target is completion within 5 days, prioritize shippable core functionality, verification, privacy, performance, and release readiness over adding many half-finished features. No feature is considered complete without a corresponding verification step.
+
 ### When a new chat starts
 If the user says only **START**:
 1. Read `HANDOVER.md`.
@@ -257,9 +260,9 @@ Priority order:
 ## 9. Session checkpoint
 
 This handover was created/updated from the verified state at:
-- Date: 2026-09-26
-- GitHub HEAD: `27a42cb963a84ee48cccc2a1dec6987bc397c584`
-- Production deployment: `dpl_76HWtwdYg16wgWDbUQGrHJ6J7jeN`
+- Date: 2026-09-27
+- GitHub HEAD: `05e2b8a983344082e86ea939dd50fcdf80d6a79a`
+- Production deployment: `dpl_a4arY26FspV6DavEYxUGcY4zDGDt`
 - Production state: **READY**
 - Static catalog: **40 unique wallpapers**
 - Duplicate image URLs: **0**
@@ -267,4 +270,5 @@ This handover was created/updated from the verified state at:
 - Latest native renderer commit: `7afba0a2e6ea6ccc6e91cd51bd6e09aca5a75df3`
 - Latest Android build compatibility fix: `27a42cb963a84ee48cccc2a1dec6987bc397c584`
 - Native renderer has Aurora, Nebula, and Ocean scenes with battery-aware frame timing.
-- Immediate next action: **verify Android Actions run/artifact; if unavailable, continue native build hardening and then verify.**
+- Immediate next action: **verify Android Actions run/artifact; if unavailable, do not claim APK READY.**
+- 5-day completion sprint: Day 1 Android build/artifact verification + core stability; Day 2 native live scenes + lifecycle/battery; Day 3 static catalog/UX/performance/duplicate audit; Day 4 AI/creative feature foundation only where safely shippable; Day 5 full QA, privacy/legal review, production verification and release checklist.
